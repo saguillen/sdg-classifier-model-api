@@ -9,3 +9,6 @@ Proyecto desarrollado por:
 
 
 Link de la wiki: https://github.com/saguillen/sdg-classifier-model-api/wiki
+
+
+![color picker](https://media.tenor.com/Jvd2yVUP4CgAAAAM/the-rock-think.gif)
