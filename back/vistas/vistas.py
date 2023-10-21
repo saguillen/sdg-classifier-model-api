@@ -7,4 +7,21 @@ from flask import jsonify
 import hashlib
 import json
 
+from modelos import \
+    db, Texts, \
+    TextsSchema
+    
+
+class VistaTexts(Resource):
+    def get(self):
+        texts = Texts.query.all()
+        texts = TextsSchema(many=True).dump(texts)
+        return jsonify(texts)
+
+    def post(self):
+        text = TextsSchema().load(request.get_json())
+        db.session.add(text)
+        db.session.commit()
+        return TextsSchema().dump(text), 201
+
 
