@@ -39,7 +39,8 @@ function App() {
             <Col>
               <Form.Group controlId="formBasicEmail">
                 <Form.Control
-                  type="text"
+                  as="textarea"
+                  rows={5}
                   placeholder="Texto del comentario"
                   value={inputValue}
                   onChange={(e) => setInputValue(e.target.value)}
