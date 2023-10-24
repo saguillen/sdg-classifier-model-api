@@ -7,9 +7,14 @@ from flask import jsonify
 import hashlib
 import json
 
-from modelos import \
+from models import \
     db, Texts, \
-    TextsSchema
+    TextsSchema, \
+    RFCmodel, \
+    data_processing
+
+
+
     
 
 class VistaTexts(Resource):
@@ -19,9 +24,26 @@ class VistaTexts(Resource):
         return jsonify(texts)
 
     def post(self):
+        text_to_process = request.json['texts']
+        text_processed = RFCmodel().prediction(text_to_process) # esto es un dataframe
+        text=text_processed.todict()
+        texts = Texts(\
+            text=text['text'],\
+            sdg=text['sdg'],\
+            palabras=text['palabras']\
+        )
+        #db.session.add(texts)
+        #db.session.commit()
+        return TextsSchema().dump(texts), 201
+            
+
         text = TextsSchema().load(request.get_json())
         db.session.add(text)
         db.session.commit()
         return TextsSchema().dump(text), 201
+    
+    
+    def prediction(self,data):
+        return self.model.predict(data)
 
 

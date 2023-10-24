@@ -1,6 +1,6 @@
 from flask import Flask
 from flask_restful import Api
-from modelos import db
+from models import db
 
 
 app = Flask(__name__)

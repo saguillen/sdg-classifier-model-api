@@ -19,3 +19,7 @@ class TextsSchema(SQLAlchemyAutoSchema):
         load_instance = True
     id = fields.String()
     text = fields.String()
+    sdg = fields.Integer()
+    palabras = fields.List(fields.String())
+
+    
