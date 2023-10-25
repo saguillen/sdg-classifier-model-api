@@ -14,19 +14,11 @@ class RFCmodel():
     
 
     def prediction(self,data):
-        #data_dict = json.loads(data)
-        #print(data_dict)
-        #df_data = pd.DataFrame(data=data_dict,columns=data_dict.keys(),index=0)
         df_data = pd.DataFrame(data=data,columns=['Textos_espanol'])
         df_final = processing(df_data)
         df_final['sdg'] = self.model.predict(df_final['palabras'])
         df_final.to_csv('data_pipelines/df_final.csv')
         #print(df_final['palabras'])
-        prediction = self.model.predict(processing(df_data)['palabras'])
-        print("PREDICCION: ",prediction)
-        return prediction
-"""    
-    def predict(self, data):
-        self.data = data
-        return self.model.predict(data)
-"""
+        #prediction = self.model.predict(processing(df_data)['palabras'])
+        print("PREDICCION: ",df_final['sdg'])
+        return df_final['sdg']

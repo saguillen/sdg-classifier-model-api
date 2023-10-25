@@ -26,26 +26,23 @@ class VistaTexts(Resource):
     def post(self):
         texts_to_process = request.json['texts']
         print(texts_to_process)
-        text_processed = RFCmodel().prediction(texts_to_process) # esto es un dataframe
-        print(text_processed)
-        #text=text_processed.todict()
-        
-        texts = Texts(\
-            text=texts_to_process[0],\
-            sdg=text_processed[0],\
-            #palabras=text['palabras']\
-        )
+        texts_processed = RFCmodel().prediction(texts_to_process) # esto es un dataframe
+        print(texts_processed)
+        lista = []
+        for text_to_process, text_processed in zip(texts_to_process, texts_processed):
+            texts = Texts(\
+                text=text_to_process,\
+                sdg=text_processed,\
+                #palabras=text['palabras']\
+            )
+            lista.append(TextsSchema().dump(texts))
 
-        print(texts)
+
+        print(lista)
         #db.session.add(texts)
         #db.session.commit()
-        return TextsSchema().dump(texts), 201
+        return jsonify(texts=lista)
             
-
-        text = TextsSchema().load(request.get_json())
-        db.session.add(text)
-        db.session.commit()
-        return TextsSchema().dump(text), 201
     
     
     def prediction(self,data):
