@@ -2,30 +2,32 @@ import logo from "./logo.svg";
 import "./App.css";
 
 import React, { useState } from "react";
-import { Form, Button, Container, Row, Col } from "react-bootstrap";
+import { Form, Button, Container, Row, Col, Table } from "react-bootstrap";
 
 function App() {
   const [inputValue, setInputValue] = useState("");
   const [requestExecuted, setRequestExecuted] = useState(false);
   const [textFieldValue, setTextFieldValue] = useState("");
+  const [respuestas, setRespuestas] = React.useState([]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    fetch("http://localhost:5000/predict", {
+    const textsArray = inputValue.split('\n');
+    fetch("http://localhost:5000/api/texts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ text: inputValue }),
+      body: JSON.stringify({ texts: textsArray }),
     })
       .then((response) => response.json())
       .then((data) => {
-        //setTextFieldValue(data.result);
-        setTextFieldValue("Sexo la película");
+        setRespuestas(data["texts"]);
+        console.log(respuestas);
         setRequestExecuted(true);
       })
       .catch((error) => {
-        setTextFieldValue("Sexo la película");
+        setRespuestas([]);
         setRequestExecuted(true);
       });
   };
@@ -57,21 +59,25 @@ function App() {
       </Form>
       {requestExecuted && (
         <Form>
-          <Container style={{textAlign: "left", paddingTop:"5vh"}}>
-            <Row>
-              <Col>
-                <Form.Group controlId="formBasicEmail">
-                  <Form.Control
-                    type="text"
-                    placeholder="Resultado de la predicción"
-                    value={"Resultado de la predicción: " + textFieldValue}
-                    readOnly
-                  />
-                </Form.Group>
-              </Col>
-            </Row>
-          </Container>
+          <Table>
+            <thead>
+              <tr>
+                <th>Texto</th>
+                <th>Objetivo</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+              respuestas.map((respuesta, index) => (
+                <tr key={index}>
+                  <td>{inputValue.split('\n')[index]}</td>
+                  <td>{respuesta}</td>
+                </tr> 
+              ))}
+            </tbody>
+          </Table>
           <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=SqyQ7ctzykF1R4hG&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <a href="https://www.example.com" style="color: #007bff; text-decoration: none; font-weight: bold;">Haz clic aquí para ir a Example.com</a>
         </Form>
       )}
     </div>

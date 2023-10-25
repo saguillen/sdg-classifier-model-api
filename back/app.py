@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_restful import Api
+from flask_cors import CORS
 from models import db
 from views import \
     VistaTexts
@@ -19,6 +20,7 @@ app_context.push()
 db.init_app(app)
 db.create_all()
 
+cors = CORS(app)
 
 api = Api(app)
 api.add_resource(VistaTexts, '/api/texts')
