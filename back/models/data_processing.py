@@ -160,4 +160,13 @@ def stem_and_lemmatize(words):
 def processing(text:pd.DataFrame(),y=None):
     text['palabras'] = text['Textos_espanol'].apply(word_tokenize).apply(preprocessing) #Aplica la eliminación del ruido
     text['palabras'] = text['palabras'].apply(stem_and_lemmatize) #Aplica lematización y Eliminación de Prefijos y Sufijos. 
+    text['palabras'] = text['palabras'].apply(lambda lista: ' '.join(lista))
+
+    #text['palabras'] = text['palabras'].apply(lambda lista: [palabra.replace(",", "") for palabra in lista])
+
+    #texto_final = text["palabras"].copy().apply(lambda arr: str(arr.replace(",","")))
+
+    #text['palabras'] = texto_final.copy()
+    #text["texto_final"] = text["palabras"].copy()
+    text.to_csv('data_pipelines/textos.csv',index=False)
     return text

@@ -9,6 +9,7 @@ Base = declarative_base()
 class Texts(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(200))
+    sdg = db.Column(db.Integer)
 
 
 class TextsSchema(SQLAlchemyAutoSchema):

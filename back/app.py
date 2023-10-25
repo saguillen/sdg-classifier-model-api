@@ -1,7 +1,8 @@
 from flask import Flask
 from flask_restful import Api
 from models import db
-
+from views import \
+    VistaTexts
 
 app = Flask(__name__)
 
@@ -20,7 +21,7 @@ db.create_all()
 
 
 api = Api(app)
-
+api.add_resource(VistaTexts, '/api/texts')
 #api.add_resource(VistaSignIn, '/signin')
 
 
