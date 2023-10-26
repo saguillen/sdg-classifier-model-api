@@ -32,6 +32,17 @@ function App() {
       });
   };
 
+    const textosMostrar=respuestas.map(
+        (respuesta)=>{
+            return(
+                <tr>
+                    <td>{respuesta.text}</td>
+                    <td>{respuesta.sdg}</td>
+                </tr>
+            )
+        }
+    )
+
   return (
     <div className="App">
       <h1>Objetivos de desarrollo sostenible</h1>
@@ -67,17 +78,10 @@ function App() {
               </tr>
             </thead>
             <tbody>
-              {
-              respuestas.map((respuesta, index) => (
-                <tr key={index}>
-                  <td>{inputValue.split('\n')[index]}</td>
-                  <td>{respuesta}</td>
-                </tr> 
-              ))}
+            {textosMostrar}
             </tbody>
           </Table>
           <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=SqyQ7ctzykF1R4hG&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-          <a href="https://www.example.com" style="color: #007bff; text-decoration: none; font-weight: bold;">Haz clic aquí para ir a Example.com</a>
         </Form>
       )}
     </div>
