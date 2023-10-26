@@ -64,6 +64,8 @@
 .flip-box-front {
   background-color: #bbb;
   color: black;
+  width: 200px; 
+  height: 200px;
 }
 
 /* Style the back side */

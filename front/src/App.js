@@ -5,14 +5,14 @@ import React, { useState } from "react";
 import { Form, Button, Container, Row, Col, Table } from "react-bootstrap";
 
 function App() {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValues, setInputValues] = useState([""]);
   const [requestExecuted, setRequestExecuted] = useState(false);
   const [textFieldValue, setTextFieldValue] = useState("");
   const [respuestas, setRespuestas] = React.useState([]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const textsArray = inputValue.split('\n');
+    const textsArray = inputValues.filter((value) => value !== "");
     fetch("http://localhost:5000/api/texts", {
       method: "POST",
       headers: {
@@ -23,7 +23,6 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setRespuestas(data["texts"]);
-        console.log(respuestas);
         setRequestExecuted(true);
       })
       .catch((error) => {
@@ -32,7 +31,56 @@ function App() {
       });
   };
 
+  const handleInputChange = (index, event) => {
+    const values = [...inputValues];
+    values[index] = event.target.value;
+    setInputValues(values);
+};
 
+const handleAddFields = () => {
+  const values = [...inputValues];
+  values.push("");
+  setInputValues(values);
+};
+
+const handleRemoveFields = (index) => {
+  const values = [...inputValues];
+  values.splice(index, 1);
+  setInputValues(values);
+};
+
+const textFields = inputValues.map((inputValue, index) => {
+  return (
+      <Row key={index}>
+          <Col>
+              <Form.Group controlId={`formBasicEmail${index}`}>
+                  <Form.Control
+                      rows={5}
+                      placeholder="Texto del comentario"
+                      value={inputValue}
+                      onChange={(event) =>
+                          handleInputChange(index, event)
+                      }
+                  />
+              </Form.Group>
+          </Col>
+          <Col>
+              {index === inputValues.length - 1 ? (
+                  <Button variant="primary" onClick={handleAddFields}>
+                      +
+                  </Button>
+              ) : (
+                  <Button
+                      variant="danger"
+                      onClick={() => handleRemoveFields(index)}
+                  >
+                      -
+                  </Button>
+              )}
+          </Col>
+      </Row>
+  );
+});
 
   const textosMostrar = respuestas.map(
     (respuesta) => {
@@ -94,40 +142,29 @@ function App() {
       <h1>Herramienta para predecir Objetivos de desarrollo sostenible</h1>
       <Form onSubmit={handleSubmit}>
         <Container style={{ textAlign: "left", paddingTop: "5vh" }}>
-          <Row>
-            <Col>
-              <Form.Group controlId="formBasicEmail">
-                <Form.Control
-                  as="textarea"
-                  rows={5}
-                  placeholder="Texto del comentario"
-                  value={inputValue}
-                  onChange={(e) => setInputValue(e.target.value)}
-                />
-              </Form.Group>
-            </Col>
-            <Col>
-              <Button variant="primary" type="submit">
-                Predecir objetivo
-              </Button>
-            </Col>
-          </Row>
+          {textFields}
+          <Button variant="primary" type="submit">
+            Predecir
+          </Button>
         </Container>
       </Form>
       {requestExecuted && (
         <Form>
+          <Container>
           <Table>
             <thead>
               <tr>
                 <th>Texto</th>
                 <th>Objetivo</th>
+                <th>Flipcard</th>
               </tr>
             </thead>
             <tbody>
               {textosMostrar}
             </tbody>
           </Table>
-          <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=SqyQ7ctzykF1R4hG&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          </Container>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/-0uQYs0OqSA?si=3NFF9SXeUEvNLcL6&amp;start=13&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </Form>
       )}
     </div>

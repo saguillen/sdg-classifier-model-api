@@ -1,7 +1,8 @@
 # Virtual enviroment
 
 # Byte-compiled / optimized / DLL files
-__pycache__/
+back/__pycache__/
+back/data_pipelines/
 *.py[cod]
 *$py.class
 
