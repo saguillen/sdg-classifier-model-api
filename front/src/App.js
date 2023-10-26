@@ -58,7 +58,7 @@ function App() {
               <Form.Group controlId={`formBasicEmail${index}`}>
                 <Form.Control
                   rows={5}
-                  placeholder="Texto del comentario"
+                  placeholder="Texto"
                   value={inputValue}
                   onChange={(event) =>
                     handleInputChange(index, event)
@@ -91,8 +91,7 @@ function App() {
     (respuesta) => {
       return (
         <tr>
-          <td>{respuesta.text}</td>
-          <td>{respuesta.sdg}</td>
+          <td><p style={{textAlign:"left"}}>{respuesta.text}</p></td>
           <td><div class="flip-box">
             {(() => {
               switch (respuesta.sdg) {
@@ -189,12 +188,11 @@ function App() {
             </div>
           </nav>
           <Container>
-            <Table>
+            <Table  hover>
               <thead>
                 <tr>
                   <th>Texto</th>
                   <th>Objetivo</th>
-                  <th>Flipcard</th>
                 </tr>
               </thead>
               <tbody>

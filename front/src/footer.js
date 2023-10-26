@@ -7,13 +7,13 @@ function Footer() {
             <Container>
                 <Row className="text-center py-3">
                     <Col className="text-left py-3" style={{ color: "white" }}>
-                        <p>Grupo 21 SAS</p>
+                        <p>Grupo 21</p>
                     </Col>
                     <Col className="text-center py-3" style={{ color: "white" }}>
                         <p>Colombia</p>
                     </Col>
                     <Col className="text-right py-3" style={{ color: "white" }}>
-                        <p>Vigilado por ministerio de cultura de Colombia</p>
+                        <p>ONU - UNFPA</p>
                     </Col>
                     <Col className="text-right py-3" style={{ color: "white" }}>
                         <p>© 2023</p>
