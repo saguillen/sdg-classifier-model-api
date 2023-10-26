@@ -17,7 +17,7 @@ class RFCmodel():
         df_data = pd.DataFrame(data=data,columns=['Textos_espanol'])
         df_final = processing(df_data)
         df_final['sdg'] = self.model.predict(df_final['palabras'])
-        df_final.to_csv('data_pipelines/df_final.csv')
+        #df_final.to_csv('data_pipelines/df_final.csv')
         #print(df_final['palabras'])
         #prediction = self.model.predict(processing(df_data)['palabras'])
         print("PREDICCION: ",df_final['sdg'])

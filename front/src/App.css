@@ -73,6 +73,8 @@
   background-color: rgba(39, 155, 72, 0.99);
   color: white;
   transform: rotateY(180deg);
+  align-items: center;
+  justify-content: center;
 }
 .flip-box-back4 {
   background-color: rgba(195, 31, 51, 0.99);
@@ -84,7 +86,66 @@
   color: white;
   transform: rotateY(180deg);
 }
+.card-item {
+  background-color: #ffffff;
+  border-radius: 20px;
+  padding-left: 24px;
+  padding-right: 24px;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  margin-left: 24px;
+  margin-right: 24px;
+  margin-bottom: 48px;
+  max-width: 323px;
+  list-style-type: none;
+}
 
+.card-1 {
+  border-top: 5px solid #ff4f64;
+}
+
+.card-2 {
+  border-top: 5px solid #00a8e7;
+}
+
+.card-3 {
+  border-top: 5px solid #44c4a1;
+}
+
+.card-4 {
+  border-top: 5px solid #fcc200;
+}
+
+.card-title {
+  color: #171f46;
+  font: 'Roboto';
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.card-description {
+  color: #64748b;
+  font: 'Roboto';
+  font-size: 14px;
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
+}
+
+.card-img {
+  height: 30%;
+}
+.card-img2 {
+  width: 20%;
+  height: 50%;
+}
+.paragraph-flip{
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
