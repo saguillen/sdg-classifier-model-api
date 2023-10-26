@@ -104,12 +104,12 @@ function App() {
                         <img src="https://www.un.org/sustainabledevelopment/es/wp-content/uploads/sites/3/2018/07/S_SDG-goals_icons-individual-rgb-03.png" width="200" height="200" alt="" />
                       </div>
                       <div class="flip-box-back3">
-                        <div style={{display: "flex", justifyContent: "center", alignItems:"center"}}>
+                        <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
                           <p class="paragraph-flip" >
                             Garantizar una vida sana y promover el bienestar para todos en todas las edades
                           </p>
-                        </div>                      
                         </div>
+                      </div>
                     </div>);
                 case 4:
                   return (
@@ -151,7 +151,7 @@ function App() {
       <nav class="navbar bg-body-tertiary" style={{ color: "blue" }}>
         <div class="container-fluid">
           <a class="navbar-brand">
-            <h1 class="entry-title fusion-responsive-typography-calculated" data-fontsize="30" style={{ color: "#333333", fontSize: 30, lineheight: 1.4 }} data-lineheight="42px">CLASIFICADOR DE TEXTOS EN OBJETIVOS DE DESARROLLO SOSTENIBLE</h1>
+            <h1 class="entry-title fusion-responsive-typography-calculated" data-fontsize="30" style={{ color: "#333333", fontSize: 30, lineheight: 1.4,paddingLeft:100 }} data-lineheight="42px">CLASIFICADOR DE TEXTOS EN OBJETIVOS DE DESARROLLO SOSTENIBLE</h1>
           </a>
         </div>
       </nav>
@@ -169,8 +169,8 @@ function App() {
                 <h1 className="card-title">Intrucciones</h1>
                 <p className="card-description">Escribe pega el texto que deseas clasificar en el cuadro de texto y recibe el texto clasificado</p>
                 <div className="img-container">
-                  <img style={{height:"50%",width:"50%"}} src={"https://upload.wikimedia.org/wikipedia/commons/1/14/UNFPA_logo.svg"} alt={"imagen"} />
-                  <img style={{height:"20%",width:"20%"}} src={"https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/University_of_Los_Andes_logo.svg/1200px-University_of_Los_Andes_logo.svg.png"} alt={"imagen2"} />
+                  <img style={{ height: "50%", width: "50%" }} src={"https://upload.wikimedia.org/wikipedia/commons/1/14/UNFPA_logo.svg"} alt={"imagen"} />
+                  <img style={{ height: "20%", width: "20%" }} src={"https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/University_of_Los_Andes_logo.svg/1200px-University_of_Los_Andes_logo.svg.png"} alt={"imagen2"} />
                 </div>
               </li>
             </div>
@@ -179,7 +179,15 @@ function App() {
         </Container>
       </Form>
       {requestExecuted && (
+
         <Form>
+          <nav class="navbar bg-body-tertiary" style={{ color: "blue" }}>
+            <div class="container-fluid">
+              <a class="navbar-brand">
+                <h1 class="entry-title fusion-responsive-typography-calculated" data-fontsize="30" style={{ color: "#333333", fontSize: 30, lineheight: 1.4, paddingLeft:100}} data-lineheight="42px">Resultado</h1>
+              </a>
+            </div>
+          </nav>
           <Container>
             <Table>
               <thead>
