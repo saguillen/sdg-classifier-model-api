@@ -166,7 +166,7 @@ function App() {
             <div class="col">
               <li className="card-1 card-item">
                 <h1 className="card-title">Intrucciones</h1>
-                <p className="card-description">Escribe pega el texto que deseas clasificar en el cuadro de texto y recibe el texto clasificado</p>
+                <p className="card-description">Escribe o pega el texto que deseas clasificar en el cuadro de texto y recibe el ODS correspondiente.</p>
                 <div className="img-container">
                   <img style={{ height: "50%", width: "50%" }} src={"https://upload.wikimedia.org/wikipedia/commons/1/14/UNFPA_logo.svg"} alt={"imagen"} />
                   <img style={{ height: "20%", width: "20%" }} src={"https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/University_of_Los_Andes_logo.svg/1200px-University_of_Los_Andes_logo.svg.png"} alt={"imagen2"} />

@@ -18,22 +18,15 @@ from models import \
     
 
 class VistaTexts(Resource):
-    def get(self):
-        texts = Texts.query.all()
-        texts = TextsSchema(many=True).dump(texts)
-        return jsonify(texts)
 
     def post(self):
         texts_to_process = request.json['texts']
-        print(texts_to_process)
         texts_processed = RFCmodel().prediction(texts_to_process) # esto es un dataframe
-        print(texts_processed)
         lista = []
         for text_to_process, text_processed in zip(texts_to_process, texts_processed):
             texts = Texts(\
                 text=text_to_process,\
                 sdg=text_processed,\
-                #palabras=text['palabras']\
             )
             lista.append(TextsSchema().dump(texts))
 
